@@ -1,0 +1,115 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ===== PAGE BACKGROUND ===== */
+body {
+  background: #ffffff;
+  color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* ===== BTC CARD ===== */
+.btc-card {
+  background: #ffffff;
+  padding: 3.5rem 3rem;
+  border-radius: 22px;
+  text-align: center;
+  width: 360px;
+
+  /* Gold accent */
+  border: 2px solid #d4af37;
+
+  /* Premium shadow */
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.12),
+    0 0 25px rgba(212, 175, 55, 0.35);
+
+  animation: fadeIn 1.4s ease;
+}
+
+/* ===== TITLE ===== */
+.btc-card h1 {
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+  color: #b8962e; /* gold */
+  letter-spacing: 0.5px;
+}
+
+/* ===== PRICE ===== */
+.price {
+  font-size: 3.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+/* ===== CHANGE ===== */
+.change {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* PROFIT */
+.up {
+  color: #1ca04a; /* green */
+}
+
+/* LOSS */
+.down {
+  color: #c62828; /* red */
+}
+
+/* ===== INFO TEXT ===== */
+.note {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.8rem;
+}
+
+/* ===== SUBTLE DIVIDER ===== */
+.btc-card::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 2px;
+  margin: 1.5rem auto 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #d4af37,
+    transparent
+  );
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .btc-card {
+    width: 90%;
+    padding: 2.8rem 2rem;
+  }
+
+  .price {
+    font-size: 2.6rem;
+  }
+}
