@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/btc")
 def btc():
-    url = "https://api.coingecko.com/api/v3/simple/price"
+    url = "https://api.coingecko.com/"
 
     params = {
         "ids": "bitcoin",
