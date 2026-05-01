@@ -41,5 +41,3 @@ def btc():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-# RUN this on your BROWSER: http://127.0.0.1:5000/btc
