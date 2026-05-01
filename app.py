@@ -1,12 +1,3 @@
-from flask import Flask, render_template
-import requests
-
-app = Flask(__name__)
-
-@app.route("/")
-def home():
-    return "Bitcoin Tracker is running 🚀 Go to /btc"
-
 @app.route("/btc")
 def btc():
     url = "https://api.coingecko.com/api/v3/simple/price"
@@ -22,26 +13,22 @@ def btc():
         "User-Agent": "Mozilla/5.0"
     }
 
-    response = requests.get(url, params=params, headers=headers)
+    try:
+        response = requests.get(url, params=params, headers=headers, timeout=10)
+        response.raise_for_status()
+        data = response.json()
 
-    if response.status_code != 200:
-        return "CoinGecko API error. Please refresh later."
+        if "bitcoin" not in data:
+            return "Bitcoin data unavailable. Please refresh later."
 
-    data = response.json()
-    print(data)
+        price = data["bitcoin"]["usd"]
+        change = data["bitcoin"]["usd_24h_change"]
 
+        return render_template(
+            "btc.html",
+            price=round(price, 2),
+            change=round(change, 2)
+        )
 
-    if "bitcoin" not in data:
-        return "Bitcoin data unavailable. Please refresh later."
-
-    price = data["bitcoin"]["usd"]
-    change = data["bitcoin"]["usd_24h_change"]
-
-    return render_template(
-        "btc.html",
-        price=round(price, 2),
-        change=round(change, 2)
-    )
-
-if __name__ == "__main__":
-    app.run(debug=True)
+    except Exception as e:
+        return f"CoinGecko API error: {str(e)}"
